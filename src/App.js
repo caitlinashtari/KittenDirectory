@@ -95,9 +95,9 @@ class App extends Component {
          };
        });
        //update state to render kittens with data from page 1 default
-          this.setState({
-            kittens: allKittens.slice(0, 10)
-          });
+         this.setState({
+           kittens: allKittens.slice(0, 10)
+         });
       }).catch(error => {
         console.log(error);
       });
@@ -111,53 +111,61 @@ class App extends Component {
   }
 
 //onSelect pagination method to setState of kittens to = data from only page selected (i.e. if page 1 is selected, set kittens to record Numbers 1-10) *Needs to be refactored... so much repeating
+
   handlePaginationSelect(selectedPage) {
     let page = selectedPage;
-    this.sortKittens();
-  //if not a restricted page call data by page
-    if(page === 1) {
-      this.setState({
-        kittens: allKittens.slice(0, 10)
-      })
-   } else if(page === 2) {
-     this.setState({
-       kittens: allKittens.slice(10, 20)
-     })
-     console.log(allKittens.slice(10, 20));
-    } else if(page === 3) {
-     this.setState({
-       kittens: allKittens.slice(20, 30)
-     })
-   } else if(page === 4) {
-      this.setState({
-        kittens: allKittens.slice(30, 40)
-      })
-     } else if(page === 5) {
-       this.setState({
-         kittens: allKittens.slice(40, 50)
-       })
-    } else if(page === 6) {
-      this.setState({
-        kittens: allKittens.slice(50, 60)
-      })
-    } else if(page === 7) {
-      this.setState({
-        kittens: allKittens.slice(60, 70)
-      })
-    } else if(page === 8) {
-       this.setState({
-         kittens: allKittens.slice(70, 80)
-       })
-      } else if(page === 9) {
-        this.setState({
-          kittens: allKittens.slice(80, 90)
-        })
-    } else if(page === 10) {
-      this.setState({
-        kittens: allKittens.slice(90, 100)
-      })
-    }
+    let end = page * 10;
+    let start = end - 10;
+
+    this.setState({
+      kittens: allKittens.slice(start, end)
+    });
   }
+  
+  //UGLY HIDEOUS CODE. Don't look at me.
+  //   if(page === 1) {
+  //     this.setState({
+  //       kittens: allKittens.slice(0, 10)
+  //     })
+  //  } else if(page === 2) {
+  //    this.setState({
+  //      kittens: allKittens.slice(10, 20)
+  //    })
+  //   //  console.log(allKittens.slice(10, 20));
+  //   } else if(page === 3) {
+  //    this.setState({
+  //      kittens: allKittens.slice(20, 30)
+  //    })
+  //  } else if(page === 4) {
+  //     this.setState({
+  //       kittens: allKittens.slice(30, 40)
+  //     })
+  //    } else if(page === 5) {
+  //      this.setState({
+  //        kittens: allKittens.slice(40, 50)
+  //      })
+  //   } else if(page === 6) {
+  //     this.setState({
+  //       kittens: allKittens.slice(50, 60)
+  //     })
+  //   } else if(page === 7) {
+  //     this.setState({
+  //       kittens: allKittens.slice(60, 70)
+  //     })
+  //   } else if(page === 8) {
+  //      this.setState({
+  //        kittens: allKittens.slice(70, 80)
+  //      })
+  //     } else if(page === 9) {
+  //       this.setState({
+  //         kittens: allKittens.slice(80, 90)
+  //       })
+  //   } else if(page === 10) {
+  //     this.setState({
+  //       kittens: allKittens.slice(90, 100)
+  //     })
+  //   }
+
 }
 
 export default App;
